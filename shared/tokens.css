@@ -1,0 +1,58 @@
+/* =========================================================
+   SHARED TOKENS — linked FIRST on every page
+   Colours, fonts, scaling and the shared back button.
+   Change a value here and every page updates.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&display=swap");
+
+:root {
+  /* colours */
+  --paper:  #F4EEE0;   /* beige page background */
+  --ink:    #1F1F1F;   /* text, lines, dark buttons */
+  --white:  #FFFFFF;
+  --yellow: #F2B632;
+  --blue:   #8FB6DC;
+  --orange: #D9653B;   /* also called "terracotta" / "red" in the designs */
+  --muted:  #636363;   /* secondary text */
+  --line:   #D6D4CE;   /* light grey placeholder lines */
+
+  /* fonts */
+  --font:  "Hanken Grotesk", system-ui, sans-serif;
+}
+
+/* SCALING RULE
+   1rem = 100px on a 4K (3840px wide) screen, and scales with the screen.
+   So: Figma px at 4K ÷ 100 = rem.   e.g. 128px → 1.28rem
+   Pages can override this (the home page and the map page do). */
+html { font-size: calc(100vw / 38.4); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+}
+
+/* SHARED BACK BUTTON
+   Same look and position on every page.
+   max(…, 44px) keeps it big enough to tap on small screens. */
+.back-button {
+  position: absolute;
+  top: max(1rem, 12px);
+  left: max(1.37rem, 12px);
+  z-index: 100;
+  display: block;
+  width: max(2rem, 44px);
+  height: max(2rem, 44px);
+  background: url("back-arrow.svg") center / 100% 100% no-repeat;
+  transition: opacity 0.2s;
+}
+
+.back-button:hover { opacity: 0.85; }
+
+.back-button:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
