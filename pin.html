@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PinCode</title>
+
+    <link rel="stylesheet" href="shared/tokens.css" />
+    <link rel="stylesheet" href="css/pin.css" />
+    <link rel="stylesheet" href="css/popups.css" />
+  </head>
+  <body>
+    <header id="myheader">
+      <div id="back-btn">
+        <a class="back-button" href="index.html" aria-label="Back to home"></a>
+      </div>
+      <div id="error-msg" class="hidden">
+        <h1>We couldn't sign you in</h1>
+        <h2>SCAN or try your pin again</h2>
+      </div>
+      <div id="logo">
+        <img class="logo-img" src="images/pin/logo.png" alt="Copenhagen Marathon logo" />
+      </div>
+    </header>
+
+    <section id="id-container">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </section>
+
+    <section id="numpad">
+      <div id="num-container">
+        <button class="digit" data-number="1">1</button>
+        <button class="digit" data-number="2">2</button>
+        <button class="digit" data-number="3">3</button>
+        <button class="digit" data-number="4">4</button>
+        <button class="digit" data-number="5">5</button>
+        <button class="digit" data-number="6">6</button>
+        <button class="digit" data-number="7">7</button>
+        <button class="digit" data-number="8">8</button>
+        <button class="digit" data-number="9">9</button>
+        <button id="confirm">
+          <img src="images/pin/check-icon.svg" alt="Confirm" />
+        </button>
+        <button class="digit" data-number="0">0</button>
+        <button id="delete">
+          <img src="images/pin/delete-icon.svg" alt="Delete" />
+        </button>
+      </div>
+    </section>
+
+    <section id="scan">
+      <h1>SCAN</h1>
+      <p>to skip pin</p>
+      <img src="images/pin/arrowdown-icon.svg" alt="" id="arrowdown-icon" />
+    </section>
+
+    <div id="design-container">
+      <img src="images/pin/blue-design.webp" alt="" />
+    </div>
+
+    <!-- Thank-you message: shown after confirming "Exit race" with the PIN -->
+    <div id="tyMsg" class="ty-design" hidden>
+      <div class="ty-container">
+        <h1>THANK YOU</h1>
+        <div class="msg">
+          <p>
+            for being part of the <b>Copenhagen Marathon</b>, <br />
+            Your participation made history! <br />
+            We hope you enjoyed the journey.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/pin.js"></script>
+  </body>
+</html>

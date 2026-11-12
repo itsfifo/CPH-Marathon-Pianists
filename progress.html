@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Progress</title>
+
+    <link rel="stylesheet" href="shared/tokens.css" />
+    <link rel="stylesheet" href="css/progress.css" />
+    <link rel="stylesheet" href="css/popups.css" />
+  </head>
+
+  <body>
+    <main class="page">
+      <!-- HEADER -->
+      <header class="header">
+        <h1 class="title">YOUR PROGRESS</h1>
+        <div class="name-box">
+          <p class="name">Aubrey Nicolas</p>
+        </div>
+        <img class="logo" src="images/progress/logo.png" alt="Copenhagen Marathon logo" />
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="dashboard">
+        <img
+          class="pic"
+          src="images/progress/profile-photo.png"
+          alt="Profile photo of Aubrey Nicolas"
+        />
+
+        <div class="id">#&nbsp;8&nbsp;8&nbsp;8&nbsp;8</div>
+
+        <img
+          class="bar"
+          src="images/progress/distance-bar.png"
+          alt="Distance: 18.12 km, 42% of 42.2 km"
+        />
+
+        <img
+          class="route"
+          src="images/progress/route.png"
+          alt="Route: 5 stops passed (Kastellet, Christianshavn). You are at 22.2 km. 12 stops left to the finish (Frederiksberg, Nørrebro)."
+        />
+
+        <img
+          class="time"
+          src="images/progress/moving-time.png"
+          alt="Moving time: 2:12:45"
+        />
+
+        <img
+          class="pace"
+          src="images/progress/avg-pace.png"
+          alt="Average pace: 6:32 per km"
+        />
+
+        <img
+          class="charity"
+          src="images/progress/charity.png"
+          alt="Raised for charity: DKK 560 of a DKK 1,080 goal (52%), DKK 25 per km"
+        />
+      </section>
+
+      <!-- FOOTER BUTTONS -->
+      <footer class="footer">
+        <a class="box back" href="index.html">BACK</a>
+        <!-- opens the exit pop-up (js/popups.js) -->
+        <a class="box exit" id="exit-card" href="#exit">EXIT RACE</a>
+      </footer>
+    </main>
+
+    <!-- ============ POP-UPS (same as the home page) ============ -->
+
+    <div id="exitPopup" class="popup-msg" hidden>
+      <div class="popup-box">
+        <p>Are you sure you want to end the run?</p>
+        <div class="btn-container">
+          <button id="yes-btn">YES</button>
+          <button id="no-btn">NO</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/popups.js"></script>
+  </body>
+</html>

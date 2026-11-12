@@ -1,0 +1,138 @@
+/* =========================================================
+   POP-UPS: exit confirmation + thank-you message
+   Used on the home page (and on the progress page later).
+   Sizes in rem: 4K Figma px ÷ 100 (see shared/tokens.css).
+   Every rule is scoped to the pop-up classes, so nothing here
+   affects the page underneath.
+   ========================================================= */
+
+/* the full-screen overlay behind each pop-up */
+.popup-msg,
+.ty-design {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+/* the "hidden" attribute must win over display: flex */
+.popup-msg[hidden],
+.ty-design[hidden] {
+  display: none;
+}
+
+/* ---------- EXIT CONFIRMATION ---------- */
+
+.popup-box {
+  width: 18.02rem;
+  height: 8.79rem;
+
+  background: url("../images/popups/exit-bg.png") center / 100% 100% no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  font-family: var(--font);
+  text-align: center;
+}
+
+.popup-box p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 0.43rem;
+}
+
+.popup-box button {
+  width: 3.59rem;
+  height: 1.37rem;
+
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+#yes-btn {
+  background-color: var(--paper);
+  color: var(--orange);
+  border: 0.05rem solid var(--orange);
+}
+
+#no-btn {
+  background-color: var(--ink);
+  color: var(--paper);
+  border: none;
+}
+
+/* ---------- THANK-YOU MESSAGE ---------- */
+
+.ty-container {
+  width: 18.02rem;
+  height: 8.79rem;
+
+  background: url("../images/popups/ty-bg.png") center / 100% 100% no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.36rem;
+
+  font-family: var(--font);
+  text-align: center;
+}
+
+.ty-container h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.96rem;
+}
+
+.ty-container p {
+  margin: 0;
+  font-weight: 300;
+  font-size: 0.6rem;
+}
+
+/* ---------- NARROW SCREENS (phones, portrait tablets) ----------
+   rem gets too small here, so use fixed sizes that are easy to tap. */
+
+@media (max-width: 799px), (orientation: portrait) {
+  .popup-box,
+  .ty-container {
+    width: min(90vw, 420px);
+    height: auto;
+    aspect-ratio: 1802 / 879;
+    padding: 12px 12% 12px 18%; /* keeps text clear of the church artwork on the left */
+    gap: 12px;
+  }
+
+  .popup-box p { font-size: 16px; }
+
+  .btn-container { gap: 12px; }
+
+  .popup-box button {
+    width: 84px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  #yes-btn { border-width: 2px; }
+
+  .ty-container h1 { font-size: 24px; }
+  .ty-container p  { font-size: 12px; }
+}

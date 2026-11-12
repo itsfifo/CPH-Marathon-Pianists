@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copenhagen Marathon</title>
+
+    <link rel="stylesheet" href="shared/tokens.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/popups.css" />
+  </head>
+
+  <body>
+    <main class="home">
+      <!-- MAP: the whole map preview links to the map page -->
+      <a href="map.html" class="map">
+        <!-- title + arrow: shown on tablet only (the mobile image already has them) -->
+        <div class="card__text map__text">
+          <h2 class="card__title">Map</h2>
+          <svg class="card__arrow" viewBox="0 0 56 22">
+            <path
+              d="M1 11H53M44 2l9 9-9 9"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            />
+          </svg>
+        </div>
+        <img class="map__logo" src="images/home/logo.png" alt="" />
+        <picture>
+          <source
+            media="(min-width: 800px) and (orientation: landscape)"
+            srcset="images/home/map-desktop.png"
+          />
+          <img
+            src="images/home/map-mobile.png"
+            alt="Map of the route showing current position at 18 km"
+          />
+        </picture>
+      </a>
+
+      <!-- CARDS -->
+      <nav class="cards">
+        <!-- PROGRESS CARD: goes to the PIN login, then to the progress page -->
+        <a href="pin.html" class="card card--progress">
+          <!-- COLLAGE LAYERS -->
+          <div class="collage">
+            <img class="collage__sun" src="images/home/sun.png" alt="" />
+            <img class="collage__runners" src="images/home/runners.png" alt="" />
+          </div>
+          <!-- TEXTS, ARROW AND PROGRESS BAR -->
+          <div class="card__text">
+            <h2 class="card__title">Progress</h2>
+            <svg class="card__arrow" viewBox="0 0 56 22">
+              <path
+                d="M1 11H53M44 2l9 9-9 9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              />
+            </svg>
+          </div>
+          <div class="progress">
+            <p class="progress__km">18&nbsp;KM <small>of 42</small></p>
+            <!-- one square per km: 42 in the track, --km of them filled -->
+            <div class="progress__bar" style="--km: 18"></div>
+          </div>
+        </a>
+
+        <!-- HISTORY CARD -->
+        <a href="history.html" class="card card--history">
+          <picture>
+            <source
+              media="(min-width: 800px) and (orientation: landscape)"
+              srcset="images/home/history-desktop.png"
+            />
+            <img class="card__img" src="images/home/history-mobile.png" alt="" />
+          </picture>
+          <div class="card__text">
+            <h2 class="card__title">History</h2>
+            <svg class="card__arrow" viewBox="0 0 56 22">
+              <path
+                d="M1 11H53M44 2l9 9-9 9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              />
+            </svg>
+          </div>
+        </a>
+
+        <!-- EXIT CARD: opens the "are you sure?" pop-up (see js/popups.js) -->
+        <a href="#exit" id="exit-card" class="card card--exit">
+          <picture>
+            <source
+              media="(min-width: 800px) and (orientation: landscape)"
+              srcset="images/home/exit-desktop.png"
+            />
+            <img class="card__img" src="images/home/exit-mobile.png" alt="" />
+          </picture>
+          <div class="card__text">
+            <h2 class="card__title">Exit race</h2>
+            <svg class="card__arrow" viewBox="0 0 56 22">
+              <path
+                d="M1 11H53M44 2l9 9-9 9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              />
+            </svg>
+          </div>
+        </a>
+      </nav>
+    </main>
+
+    <!-- ============ POP-UPS (moved here from the pop-up test page) ============ -->
+
+    <!-- Exit confirmation -->
+    <div id="exitPopup" class="popup-msg" hidden>
+      <div class="popup-box">
+        <p>Are you sure you want to end the run?</p>
+        <div class="btn-container">
+          <button id="yes-btn">YES</button>
+          <button id="no-btn">NO</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/popups.js"></script>
+  </body>
+</html>

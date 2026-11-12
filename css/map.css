@@ -1,0 +1,196 @@
+
+/* =========================================================
+   MAP PAGE
+   Colours, fonts and the back button come from shared/tokens.css.
+   ========================================================= */
+
+/* Same 4K rule as the shared tokens (1rem = 100px at 4K),
+   but never smaller than 30px so the legend stays readable. */
+html { font-size: max(calc(100vw / 38.4), 30px); }
+
+body { overflow: hidden; }
+
+.screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-background {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+}
+
+.map-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+/* the legend checkboxes show/hide the map layers */
+.screen:has(#toggle-run:not(:checked))          .map-layer-run,
+.screen:has(#toggle-todo:not(:checked))         .map-layer-todo,
+.screen:has(#toggle-checkpoints:not(:checked))  .map-layer-checkpoints,
+.screen:has(#toggle-toilets:not(:checked))      .map-layer-toilets,
+.screen:has(#toggle-refreshments:not(:checked)) .map-layer-refreshments,
+.screen:has(#toggle-firstaid:not(:checked))     .map-layer-firstaid { display: none; }
+
+/* back button: now shared, see shared/tokens.css */
+
+/*legend box*/
+
+.legend { 
+  position: absolute; 
+  z-index: 1; 
+  transform: scale(1.4);
+  transform-origin: top right;
+  top: 1rem; 
+  right: 2.2rem;
+  width: 6.2rem;
+  padding: 0.6rem 0.50rem 0.3rem;
+  background: url("../images/map/cphlegend.svg") center / 100% 100% no-repeat;
+}
+
+.legend_title,
+.legend_text {
+  margin: 0;
+  font-size: 0.32rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.legend_text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.legend_distance {
+  font-size: 0.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: none;   /* keeps "m" lowercase */
+  white-space: nowrap;
+}
+
+.legend_title { margin-bottom: 0.4rem; }
+
+.legend_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.21rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend_group-start { margin-top: 0.40rem; }
+
+/*legend icon text line*/
+
+.legend_input { position: absolute; opacity: 0; } 
+.legend_label {
+  display: flex;
+  align-items: center;
+  min-height: 0.7rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.legend_box {
+  flex: none;
+  width: 0.50rem;
+  height: 0.50rem;
+  margin-right: 0.25rem;
+  border: 0.02rem solid var(--ink);
+  background: center / 70% no-repeat;
+  
+}
+
+.legend_input:checked + .legend_label .legend_box {
+  background-color: var(--ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  transition: 0.20s;
+}
+/*icons*/
+
+.legend_icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.31rem;
+}
+
+.legend_icon2 {
+  flex: none;
+  display: grid;
+  place-items: center; 
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0rem;
+}
+
+
+.legend_icon-run { 
+  background: url("../images/map/sofaricon.svg") center / 100% 100% no-repeat;
+}
+
+
+.legend_icon-todo {
+  background: url("../images/map/todoicon.svg") center / 100% 100% no-repeat;
+}
+
+.legend_icon-badge {
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.38rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.legend_icon-wc { font-size: 0.29rem; }
+
+.legend_icon-badge svg { width: 100%; height: 100%; }
+.legend_icon-badge .drop-icon { width: 70%; height: 70%; }
+
+.legend_divider {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0.30rem 0 0.20rem;
+}
+
+
+
+.legend_here { display: flex; align-items: center; margin: 0; }
+
+
+.legend_here-icon {
+  width: 0.80rem;
+  height: 0.80rem;
+  margin: 0 0.40rem 0 0.40rem;
+  background: url("../images/map/youarehereicon.svg") center / contain no-repeat;
+}
+
+/*responsive mobile*/
+@media (max-width: 826px) {
+  html { font-size: 30px; }
+  .map-layer { object-position: 30% 50%; }
+  .legend { top: 0.3rem; right: 0.3rem; }
+}
+
+@media (max-width: 440px) {
+  html { font-size: 22px; }
+  .map-layer { object-position: 30% 50%; }
+  .legend { top: 0.2rem; right: 0.2rem; }
+}

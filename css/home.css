@@ -1,0 +1,310 @@
+/* =========================================================
+   HOME PAGE
+   Colours and fonts come from shared/tokens.css.
+   Mobile first: narrow layout by default, tablet layout in the
+   media query at the bottom.
+   ========================================================= */
+
+:root {
+    --track: #9C9C9C40; /* faded progress track: #9C9C9C at 25% (40 in hex) */
+
+    /* mobile spacing */
+    --page-x: 26px;
+    --page-top: 44px;
+    --gap: 10px;
+
+    /* mobile card shapes (width / height) */
+    --shape-progress: 100 / 62;
+    --shape-history: 100 / 46;
+    --shape-exit: 100 / 31;
+
+    /* tablet card proportions */
+    --row-progress: 1.6fr;
+    --row-history: 1.45fr;
+    --row-exit: 1fr;
+}
+
+/* The home page's mobile sizes are in rem based on 16px,
+   so it opts out of the shared 4K scaling rule on narrow screens.
+   (The tablet layout switches it back on at the bottom.) */
+html { font-size: 100%; }
+
+body { background: var(--white); }
+
+img { display: block; max-width: 100%; }
+h2, p { margin: 0; }
+
+/* ---------- NARROW LAYOUT (phones, portrait tablets) ---------- */
+
+.home {
+    display: grid;
+    gap: var(--gap);
+    padding: var(--page-top) var(--page-x) var(--page-x);
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.map {
+    position: relative;   /* the title sits on top of the map image */
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+/* the mobile map image already has "MAP →" in it, so the real
+   title is only shown on tablet (see the media query) */
+.map__text,
+.map__logo { display: none; }
+.map picture { display: block; }
+
+.map img {
+    width: 100%;
+    aspect-ratio: 13 / 10;
+    object-fit: cover;
+}
+
+.map:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+}
+
+.cards {
+    display: grid;
+    gap: var(--gap);
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 10px 10px;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.card--progress {
+    background: var(--yellow);
+    aspect-ratio: var(--shape-progress);
+    justify-content: space-between;
+}
+
+.card--history {
+    background: var(--blue);
+    aspect-ratio: var(--shape-history);
+}
+
+.card--exit {
+    background: var(--orange);
+    aspect-ratio: var(--shape-exit);
+}
+
+/* collages (History + Exit race) */
+.card picture {
+    position: absolute;
+    inset: 0;
+}
+
+.card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right bottom;
+}
+
+.card__text {
+    position: relative;
+    z-index: 1; /* keeps text above the collage */
+}
+
+.card__title {
+    font-weight: 800; /* ExtraBold */
+    font-size: clamp(2.25rem, 13.5vw, 3.5rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.card__arrow {
+    display: block;
+    width: clamp(44px, 13vw, 56px);
+    height: auto;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+/* the mobile design has no arrow on Exit race */
+.card--exit .card__arrow { display: none; }
+
+.progress {
+    position: relative;
+    z-index: 1;
+    padding: 0 8px 0 7px;
+}
+
+.progress__km {
+    font-weight: 600; /* SemiBold, from "Home page values" */
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.progress__km small {
+    font-weight: 500; /* Medium */
+    font-size: 0.5em;
+    color: var(--muted);
+    letter-spacing: 0;
+}
+
+/* PROGRESS BAR: exactly 42 squares, one per km.
+   --km (set in the HTML) is how many are filled.
+   Two layers side by side, so they never overlap:
+   - left:  --km solid squares
+   - right: the rest (42 - km) as faded squares
+   Each square is 75% colour, 25% gap. */
+.progress__bar {
+    --done: calc(100% * var(--km) / 42);
+    --left: calc(100% * (42 - var(--km)) / 42);
+
+    margin-top: 8px;
+    height: 10px;
+    width: 100%;
+    background:
+        repeating-linear-gradient(90deg,
+            var(--ink) 0 calc(100% / var(--km) * 0.75),
+            transparent 0 calc(100% / var(--km)))
+            left / var(--done) 100% no-repeat,
+        repeating-linear-gradient(90deg,
+            var(--track) 0 calc(100% / (42 - var(--km)) * 0.75),
+            transparent 0 calc(100% / (42 - var(--km))))
+            right / var(--left) 100% no-repeat;
+}
+
+/* Progress collage layers */
+.collage {
+    position: absolute;
+    inset: 0;
+}
+
+.collage img {
+    position: absolute;
+    max-width: none;
+    transition: all 0.5s ease;
+}
+
+.collage__sun     { width: 52%; right: 0; bottom: 0; }
+.collage__runners { width: 40%; right: 0; top: 28.5%; }
+
+/* ---------- TABLET LAYOUT (landscape, 800px+) ----------
+   Everything in vw, so the page fills any 16:9 screen,
+   from a small tablet to 4K, at the same proportions. */
+
+@media (min-width: 800px) and (orientation: landscape) {
+
+    /* switch the shared 4K scaling back on (used by the pop-ups) */
+    html { font-size: calc(100vw / 38.4); }
+
+    :root {
+        --gap: 0.85vw;
+        --screen-pad: 1.3vw;
+        --card-pad: 1.4vw;
+    }
+
+    body { background: var(--paper); }
+
+    .home {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        aspect-ratio: 16 / 9;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: minmax(0, 1fr);
+        padding: var(--screen-pad);
+        background: var(--paper);
+    }
+
+    .map { min-height: 0; }
+    .map picture { height: 100%; }
+
+    .map__text {
+        display: block;
+        position: absolute;
+        top: var(--card-pad);
+        left: var(--card-pad);
+    }
+
+    /* MAP is the big heading of the screen: about 2.5x the card titles,
+       measured from the Figma HomeScreen frame */
+    .map__text .card__title {
+        font-size: 7.2vw;
+        font-weight: 900;
+        line-height: 0.9;
+    }
+
+    .map__text .card__arrow {
+        width: 6.3vw;
+        margin-top: 1vw;
+    }
+
+    .map__text .card__arrow path { stroke-width: 3.5; } /* thicker line, as in Figma */
+
+    /* logo in the bottom-left corner of the map, measured from Figma */
+    .map .map__logo {   /* ".map" too, so it beats the ".map img" rules */
+        display: block;
+        position: absolute;
+        left: 2.9vw;
+        bottom: 3.2vw;
+        width: 8.1vw;
+        height: auto;
+        aspect-ratio: auto;
+    }
+    .map img {
+        height: 100%;
+        aspect-ratio: auto;
+    }
+
+    .cards {
+        grid-template-rows:
+            minmax(0, var(--row-progress))
+            minmax(0, var(--row-history))
+            minmax(0, var(--row-exit));
+        min-height: 0;
+    }
+
+    .card,
+    .card--progress,
+    .card--history,
+    .card--exit {
+        aspect-ratio: auto;
+        padding: var(--card-pad);
+    }
+
+    .card__title { font-size: 2.9vw; line-height: 1; }
+    .card__arrow { width: 3.7vw; margin-top: 0.7vw; }
+    .card--exit .card__arrow { display: block; }
+
+    .progress { padding: 0; }
+    .progress__km { font-size: 2.3vw; }
+
+    .progress__bar {
+        height: 0.6vw;
+        margin-top: 0.4vw;
+    }
+
+    .collage__sun     { width: 38.5%; right: 0;  bottom: 0; }
+    .collage__runners { width: 36.5%; right: 1%; top: 0.5%; }
+}
+
+/* ---------- HOVER + KEYBOARD FOCUS (both layouts) ---------- */
+
+.card:hover .card__arrow,
+.card:focus-visible .card__arrow,
+.map:hover .card__arrow,
+.map:focus-visible .card__arrow {
+    transform: translateX(6px);
+}
+
+.card:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+}

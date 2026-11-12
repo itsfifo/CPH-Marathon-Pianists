@@ -1,0 +1,343 @@
+/* =========================================================
+   PIN PAGE
+   Colours, fonts and the back button come from shared/tokens.css.
+   Sizes in rem: 4K px ÷ 100 (1rem = 100px on a 4K screen),
+   so the 4K design now scales to any 16:9 screen.
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--paper);
+}
+
+/**header**/
+
+#myheader {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+/* back button: now shared, see shared/tokens.css */
+
+#logo,
+.logo-img {
+  height: 4.2rem;
+  margin-top: 0.45rem;
+}
+
+/**Error message**/
+
+#error-msg {
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+
+  text-align: center;
+  color: var(--orange);
+}
+
+#error-msg.hidden {
+  visibility: hidden;
+}
+
+/**digit of personal id**/
+
+#id-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 4rem;
+
+  gap: 0.7rem;
+}
+
+#id-container span {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  width: 3.05rem;
+  height: 0.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+
+  /*id digits*/
+  font-size: 1.7rem;
+  font-weight: bold;
+  font-family: var(--font);
+
+  color: var(--ink);
+
+  /*id-number placeholder*/
+  border-bottom: 0.5rem solid var(--line);
+}
+
+#id-container span.filled {
+  border-bottom: none;
+}
+
+/**numpad **/
+
+#numpad {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#num-container .digit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 3.757rem;
+  height: 2.5022rem;
+  font-size: 1.3689rem;
+}
+
+#num-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.2rem;
+
+  position: fixed;
+}
+
+.digit {
+  background-color: var(--ink);
+  color: var(--paper);
+
+  font-family: var(--font);
+  font-weight: bold;
+}
+
+.digit:active {
+  background-color: var(--yellow);
+  color: var(--ink);
+}
+
+/**confirm and delete button**/
+
+#confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--blue);
+
+  padding: 0.2rem;
+  width: 3.757rem;
+  height: 2.5022rem;
+}
+
+#confirm img { width: 2.29rem; }
+
+#confirm:active {
+  background-color: var(--yellow);
+}
+
+#delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--yellow);
+
+  padding: 0.2rem;
+  width: 3.757rem;
+  height: 2.5022rem;
+}
+
+#delete img { width: 2.82rem; }
+
+#delete:active {
+  background-color: var(--blue);
+}
+
+/* scan section */
+
+#scan {
+  position: relative;
+  bottom: 0;
+  right: 0.7rem;
+  height: 12rem;
+
+  pointer-events: none;
+}
+
+#scan h1 {
+  font-family: var(--font);
+  font-size: 2rem;
+  font-weight: bold;
+
+  position: absolute;
+  right: 2.9rem;
+  bottom: 2.9rem;
+}
+
+#scan p {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 0.96rem;
+
+  position: absolute;
+  right: 3.1rem;
+  bottom: 2rem;
+}
+
+#scan img {
+  width: 2.1rem;
+
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0;
+}
+
+/* bottom image design */
+
+#design-container {
+  position: relative;
+}
+
+#design-container img {
+  width: 13.45rem;
+
+  position: absolute;
+  bottom: -5rem;
+  left: -5rem;
+}
+
+/*coloring digits when it's wrong or correct*/
+
+#id-container.positive span {
+  color: var(--yellow);
+}
+
+#id-container.negative span {
+  color: var(--orange);
+}
+
+/*Mobile breaking point (kept from the original, in px)*/
+
+@media (max-width: 402px) {
+  #myheader {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+  }
+
+  #logo,
+  .logo-img {
+    margin-top: 20px;
+    margin-right: 20px;
+
+    width: 78px;
+    height: 58px;
+  }
+
+  /**Error message**/
+  #error-msg {
+    padding-top: 40px;
+
+    font-family: var(--font);
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 50px;
+
+    text-align: center;
+    color: var(--orange);
+  }
+
+  /**digit of personal id**/
+
+  #id-container {
+    min-height: 20px;
+    gap: 10px;
+  }
+
+  #id-container span {
+    /*placeholder*/
+    border-bottom: 4px solid var(--line);
+
+    /*id digit spacing*/
+    width: 70px;
+    height: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    /*id digit settings*/
+    font-size: 24px;
+  }
+
+  #id-container span.filled {
+    border-bottom: none;
+  }
+
+  /**numpad **/
+
+  #numpad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+
+    width: 320px;
+    height: 400px;
+  }
+
+  #num-container .digit {
+    width: 70px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  #num-container {
+    gap: 20px;
+  }
+
+  /**confirm + delete buttons**/
+
+  #confirm,
+  #delete {
+    padding: 0;
+    width: 70px;
+    height: 50px;
+  }
+
+  #confirm img,
+  #delete img {
+    width: 40px;
+  }
+
+  /* bottom image design */
+
+  #design-container {
+    position: relative;
+    height: 210px;
+  }
+
+  #design-container img {
+    width: 222px;
+
+    position: absolute;
+    bottom: -90px;
+    left: -90px;
+  }
+
+  #scan {
+    display: none;
+  }
+}

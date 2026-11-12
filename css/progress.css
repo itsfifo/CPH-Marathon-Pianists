@@ -1,0 +1,177 @@
+/* =========================================================
+   PROGRESS PAGE
+   Colours, fonts and scaling come from shared/tokens.css.
+   Sizes in rem: 4K px ÷ 100 (1rem = 100px on a 4K screen).
+   All measurements are taken from the original stylesheet.css.
+
+   One column system is shared by the header, dashboard and
+   footer, so everything lines up:
+   col 1: 4.8rem | col 2: 11.37rem | col 3: 9rem | col 4: 9.15rem
+   ========================================================= */
+
+:root {
+  --col-1: 4.8rem;    /* photo + id */
+  --col-2: 11.37rem;  /* route */
+  --col-3: 9rem;      /* time + pace */
+  --col-4: 9.15rem;   /* charity */
+  --gap: 0.2rem;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+/* the 16:9 screen; the collage sits in the bottom-left corner */
+.page {
+  position: relative;
+  width: 100vw;
+  height: 56.25vw;   /* 16:9 */
+  padding: 0.7rem 0 0 1.9rem;
+  background: url("../images/progress/background.png") left bottom / 100% 100% no-repeat;
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+  display: grid;
+  grid-template-columns: var(--col-1) 1fr 3.07rem;
+  column-gap: var(--gap);
+  align-items: end;
+  width: calc(var(--col-1) + var(--col-2) + var(--col-3) + var(--col-4) + 3 * var(--gap));
+  height: 3.3rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 550;
+  line-height: 1.15;
+}
+
+.name-box {
+  height: 100%;
+  margin-right: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  background-color: var(--ink);
+}
+
+.name {
+  margin: 0;
+  color: var(--yellow);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.logo {
+  align-self: center;
+  width: 3.07rem;
+}
+
+/* ---------- DASHBOARD ---------- */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: var(--col-1) var(--col-2) var(--col-3) var(--col-4);
+  grid-template-rows: 3.3rem 3.05rem 0.57rem 1.99rem 1.6rem;
+  gap: var(--gap);
+  margin-top: 0.5rem;
+}
+
+/* the panels are exported images: fit them inside their grid cell */
+.dashboard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.dashboard .pic {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  object-fit: cover;   /* the photo fills its box, like the original */
+}
+
+.id {
+  grid-column: 1;
+  grid-row: 3 / 5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--blue);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.dashboard .bar {
+  grid-column: 2 / 5;
+  grid-row: 1;
+  object-position: left center;
+}
+
+.route {
+  grid-column: 2;
+  grid-row: 2 / 6;
+}
+
+.time {
+  grid-column: 3;
+  grid-row: 2 / 4;
+}
+
+.pace {
+  grid-column: 3;
+  grid-row: 4 / 6;
+}
+
+.charity {
+  grid-column: 4;
+  grid-row: 2 / 6;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+  width: calc(var(--col-2) + var(--col-3) + var(--col-4) + 2 * var(--gap));
+  height: 3.3rem;
+  margin-top: 1.25rem;
+  margin-left: calc(var(--col-1) + var(--gap));
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.back {
+  color: var(--paper);
+  background-color: var(--ink);
+}
+
+.exit {
+  color: var(--orange);
+  border: 0.033rem solid var(--orange);
+}
+
+.box:hover { opacity: 0.85; }
+
+.box:focus-visible {
+  outline: 0.03rem solid var(--ink);
+  outline-offset: 0.05rem;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPH Marathon MAP</title>
+
+  <link rel="stylesheet" href="shared/tokens.css">
+  <link rel="stylesheet" href="css/map.css">
+</head>
+<body>
+<main class="screen">
+
+  <div class="map-background">
+    <img class="map-layer" src="images/map/map-base.png" alt="Map of the marathon route through Copenhagen">
+    <img class="map-layer map-layer-run" src="images/map/run.png" alt="Route already run">
+    <img class="map-layer map-layer-todo" src="images/map/todo.png" alt="Route still to run">
+
+    <img class="map-layer map-layer-checkpoints" src="images/map/checkpoints.png" alt="Checkpoints">
+    <img class="map-layer map-layer-toilets" src="images/map/toilets.png" alt="Toilets">
+    <img class="map-layer map-layer-refreshments" src="images/map/refreshments.png" alt="Refreshment stations">
+    <img class="map-layer map-layer-firstaid" src="images/map/firstaid.png" alt="First aid stations">
+
+    <img class="map-layer map-layer-locations" src="images/map/locations.png" alt="Places along the route">
+    <img class="map-layer" src="images/map/youarehereiconbig.svg" alt="You are here">
+  </div>
+
+  <a class="back-button" href="index.html" aria-label="Back to home"></a>
+
+  <aside class="legend" aria-labelledby="legend-title">
+    <h1 class="legend_title" id="legend-title">Show on map</h1>
+
+    <ul class="legend_list">
+      <li>
+        <input class="legend_input" type="checkbox" id="toggle-run" checked>
+        <label class="legend_label" for="toggle-run">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-run"></span>
+          <span class="legend_text">Run so far</span>
+        </label>
+      </li>
+      <li>
+        <input class="legend_input" type="checkbox" id="toggle-todo" checked>
+        <label class="legend_label" for="toggle-todo">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-todo"></span>
+          <span class="legend_text">Still to run</span>
+        </label>
+      </li>
+      <li class="legend_group-start">
+        <input class="legend_input" type="checkbox" id="toggle-checkpoints">
+        <label class="legend_label" for="toggle-checkpoints">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-badge">5</span>
+          <span class="legend_text-wrap">
+            <span class="legend_text">Checkpoints</span>
+            <span class="legend_distance">480m</span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <input class="legend_input" type="checkbox" id="toggle-toilets">
+        <label class="legend_label" for="toggle-toilets">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-badge legend_icon-wc">WC</span>
+          <span class="legend_text-wrap">
+            <span class="legend_text">Toilets</span>
+            <span class="legend_distance">3700m</span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <input class="legend_input" type="checkbox" id="toggle-refreshments">
+        <label class="legend_label" for="toggle-refreshments">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-badge">
+            <img class="legend_icon2" src="images/map/dropicon.svg" alt="">
+          </span>
+          <span class="legend_text-wrap">
+            <span class="legend_text">Refreshments</span>
+            <span class="legend_distance">480m</span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <input class="legend_input" type="checkbox" id="toggle-firstaid">
+        <label class="legend_label" for="toggle-firstaid">
+          <span class="legend_box"></span>
+          <span class="legend_icon legend_icon-badge">
+            <img class="legend_icon2" src="images/map/crossicon.svg" alt="">
+          </span>
+          <span class="legend_text-wrap">
+            <span class="legend_text">First aid</span>
+            <span class="legend_distance">220m</span>
+          </span>
+        </label>
+      </li>
+    </ul>
+
+    <img class="legend_divider" src="images/map/dividerline.svg" alt="">
+
+    <p class="legend_here">
+      <span class="legend_here-icon"></span>
+      <span class="legend_text">You are here</span>
+    </p>
+  </aside>
+
+</main>
+</body>
+</html>

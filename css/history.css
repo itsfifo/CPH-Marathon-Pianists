@@ -1,0 +1,258 @@
+/* =========================================================
+   HISTORY PAGE
+   Colours, fonts and the back button come from shared/tokens.css.
+   Sizes in rem: 4K px ÷ 100 (1rem = 100px on a 4K screen).
+   ========================================================= */
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  background-image: url("../images/history/history-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  position: relative;
+}
+
+/* back button: now shared, see shared/tokens.css */
+
+/* TIMELINE */
+
+.lineitems {
+  position: absolute;
+  top: 8%;
+  left: 7.5%;
+  width: 85%;
+  height: 17%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* Timeline horizontal line */
+
+.lineitems hr {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  height: 0.05rem;
+  border: none;
+  margin: 0;
+  background-color: var(--ink);
+  z-index: 1;
+}
+
+/* Normal timeline items */
+
+.normal-containers {
+  position: relative;
+  z-index: 5;
+  width: 17%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Timeline labels */
+
+.timeline-label {
+  font-family: var(--font);
+  font-size: 0.34rem;
+  font-weight: bold;
+  color: var(--ink);
+  margin-bottom: 0.12rem;
+  letter-spacing: 0.01rem;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Timeline diamond images */
+
+.normal-containers img {
+  width: 2.11rem;
+  height: 2.11rem;
+  object-fit: contain;
+  position: relative;
+  z-index: 5;
+}
+
+/* CENTER TIMELINE ITEM (current stop) */
+
+#third-container {
+  position: relative;
+  z-index: 5;
+  width: 18%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#third-container .third-item {
+  width: 3.07rem;
+  height: 3.07rem;
+  object-fit: contain;
+  position: relative;
+  z-index: 6;
+}
+
+/* PLACE TITLE (inside the text area, above The History / The Story) */
+
+.place-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font);
+  font-size: 1.11rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  color: var(--ink);
+  letter-spacing: 0.03rem;
+}
+
+/* HISTORY CONTENT */
+
+#history {
+  position: absolute;
+  top: 31%;
+  left: 7%;
+  width: 86%;
+  height: 52%;
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  gap: 2.5%;
+  align-items: center;
+  background-image: url("../images/history/content-bg.jpg");
+}
+
+/* MAIN PHOTO */
+
+#main-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* TEXT AREA */
+
+.historytext {
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem 0.5rem 0.4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TWO COLUMNS */
+
+.columns-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+}
+
+/* VERTICAL DIVIDER */
+
+.columns-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 0.02rem;
+  background-color: var(--ink);
+  transform: translateX(-50%);
+}
+
+/* HISTORY COLUMN */
+
+.history-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 0.4rem;
+}
+
+/* STORY COLUMN */
+
+.story-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.4rem;
+}
+
+/* COLUMN HEADINGS */
+
+.history-col h2,
+.story-col h3 {
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+/* darker yellow/orange than the shared tokens: kept as designed,
+   probably for better contrast on the light background */
+.history-col h2 {
+  color: #e8a923;
+}
+
+.story-col h3 {
+  color: #c65b3b;
+}
+
+/* PARAGRAPHS */
+
+.history-col p,
+.story-col p {
+  font-family: var(--font);
+  font-size: 0.64rem;
+  line-height: 1.4;
+  text-align: left;
+  margin: 0;
+  color: #292929;
+}
+
+/* DECORATIVE SHAPES */
+
+.accent-diamond-left {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--orange);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  position: absolute;
+  transform: rotate(15deg);
+  top: 28%;
+  left: 5.5%;
+  z-index: 2;
+}
+
+.accent-diamond-right {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--yellow);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  position: absolute;
+  transform: rotate(15deg);
+  bottom: 13%;
+  right: 5.5%;
+  z-index: 2;
+}
